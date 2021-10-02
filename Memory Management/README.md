@@ -4,7 +4,7 @@ We started Part A with the patch provided which just tricks the process into bel
 
 This means that any access to the above requested memory results in a page fault as in reality no such memory has been provided and hence, it is an illegal reference. Our lazy allocator in such cases of page faults allocates one page from the free physical memory available to the process and also updates the page table about this new allocation. 
 
-![](parta1.png)
+![](images/parta1.png)
 
 #### Handling the Page Fault
 
@@ -46,7 +46,7 @@ The allocation of page and updation the page table is done in `allocSinglePg(...
 - In case of failure in `mappages(...)`, aquired memory `mem` is freed using `kfree(mem)`.
 
 #### Sample output 
-<img src="parta2.png" height="150px"/>
+<img src="images/parta2.png" height="150px"/>
 
 
 ---
@@ -379,4 +379,4 @@ Every child process first iterates 20 times setting the byte values, after which
 
 ### **Sample Output :**
 
-<img src="partb4.png" height="650px"/>
+<img src="images/partb4.png" height="650px"/>

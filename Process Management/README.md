@@ -61,7 +61,7 @@ getMaxPid(void)
 ### **Syscall getProcInfo**
 
 We added an extra field `numcs` in the struct `proc` to keep track of the number of context switches of a process
- 
+
  <br/>
 
 ```C
@@ -190,13 +190,6 @@ For creating the user-level application, we need to make some changes in the `Ma
 
 In `Patch/PartA/Makefile` we need to add our user-level applications to `UPROGS` and `EXTRA	`.
 
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
 ```makefile
 // Makefile
 	_numProcTest\                                                                            # line 184
@@ -224,7 +217,7 @@ We created `procInfoTest.c` in which we use the syscall getMaxPid to get the Max
 ### **getSetBTime**
 We created `getSetBTime.c` in which we first print the current burst time for this process (whose default value is 0), using the system call `get_burst_time`. Then we take user input for the new burst time to be set and after some validation use this input to set the new burst time using the system call `set_burst_time`, while passing the new value. Finally, we again use `get_burst_time` to demostrate that the burst time has indeed been set correctly.
 
-![Syscall screenshot](partA_ss.png "Syscall screenshot")
+![Syscall screenshot](images/partA_ss.png "Syscall screenshot")
 
 ---
 
@@ -243,8 +236,6 @@ This part require the default number of CPUs to simulate to be changed to 1. It 
 
 The default scheduler of `xv6` was an unweighted round robin scheduler which preempts the current process after running it for certain fixed time (indicated by an _interrupt_ from _hardware timer_). But the required scheduler needs to be Shortest Job First scheduler, so it was required to disable this preemption. It was achieved by commenting the following code from the file `traps.c`
 
-<br/>
-<br/>
 <br/>
 
 ```c
@@ -377,7 +368,7 @@ When `testCase1.c` is run, various important observations are made:
 
 **Screenshot:** In the screenshot below, we can see that even though the first process (PID: 14) has the least burst time, it _can not_ complete execution because it is waiting for user IO and hence in SLEEPING state. Hence, it can only resume once the user gives the Input. After which it gets executed.
 
-![Test Case 1](./testCase1.png)
+![Test Case 1](./images/testCase1.png)
 ---
 
 #### **testCase2.c**
@@ -399,7 +390,7 @@ _Note_ that as default burst time is 0, the driver code/parent process (which ha
 
 **_Quantitatively:_** (see output before summary) the turnaround time (time it took to complete its execution after being ready for execution) for the second process is almost _double_ the turnaround time for the first process. This is due to the fact that both the processes are ready for execution at almost the same time and one process executes itself while the other one waits for its execution and then is executed.
 
-![Test Case 2](./testCase2.png)
+![Test Case 2](./images/testCase2.png)
 ---
 
 #### **testCase3.c**
@@ -416,11 +407,11 @@ The above program is run on `Xv6` with SJF (Shortest Job First) scheduler and wi
 
 * Shortest Job First scheduler 
 
-  ![Shortest Job First scheduler ](./testCase3_sjf.png)
+  ![Shortest Job First scheduler ](./images/testCase3_sjf.png)
 
 * Round Robin scheduler
 
-  ![Round Robin scheduler](./testCase3_roundRobin.png)
+  ![Round Robin scheduler](./images/testCase3_roundRobin.png)
 
 The following significant differences were observed:
 
@@ -591,7 +582,7 @@ void trap(struct trapframe *tf){
 
 Initially we have a parent process with pid 3. Parent is forking 3 child processes with pids 4, 5 and 6 and burst time 4, 8 and 2 respectively. After that it went on sleep waiting for children to finish. Now we have [4, 5, 6] in our ready queue each with burst time 0. Each of them set their own burst time and order in queue becomes [6, 4, 5]. These process are now sorted according to their burst time. Time quanta of 2 is chosen as it is the burst time of smallest process
 
-> ![](test1_hybridRR.png)
+> ![](images/test1_hybridRR.png)
 
 **Expected**
 ```python
@@ -625,7 +616,7 @@ The observed output is same as the expected output except the case that process 
 
 Here we have 5 processes with { pid: burst time } as follows - [{4: 4}, {5: 5}, {6: 8}, {7: 10}, {8: 2}]. Process 4, 6 and 8 are CPU bound processes whereas processes 5 and 7 are IO bound processes. After these processes set their own burst time the ready looks like this - [8, 4, 5, 6, 7]. Now following is the order in which scheduing is being done.
 
-> ![](test2_hybridRR.png)
+> ![](images/test2_hybridRR.png)
 
 
 ```python

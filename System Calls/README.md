@@ -106,10 +106,10 @@ for(; ph < eph; ph++){
 ### Exercise 4: Objdump
 
 > **objdump -h kernel**
-> ![objdump kernel](Images/objdumpKernel.png) 
+> ![objdump kernel](Images/objdump_kernel.png) 
 > 
 >  **objdump -h bootblock.o**
-> ![objdump_bootblock.png](Images/objdumpBootblock.png) 
+> ![objdump_bootblock.png](Images/objdump_bootblock.png) 
 
 <div style="page-break-after: always;"></div>
 
