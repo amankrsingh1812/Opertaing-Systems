@@ -1,0 +1,22 @@
+###################  Test Commands  ########################################################
+Following tests are present in corresponding patch files
+
+---------------------  PART - A  ---------------------------------------------------------------
+
+$ numProcTest
+$ maxPidTest
+$ procInfoTest
+$ getSetBTime
+
+----------------------  PART - B_1  ---------------------------------------------------------------
+
+$ testCase1                        \\Requires User Input
+$ testCase2
+$ testCase3
+
+----------------------  PART - B_2 - BONUS ---------------------------------------------------------------
+
+
+$ testCase1
+$ testCase2						   \\Requires User Input
+
